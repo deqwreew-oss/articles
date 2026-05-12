@@ -40,11 +40,11 @@
       current.file === articleUrl.split("/").pop();
   }
 
-  function buildHref(article, mode) {
+  function buildHref(article, mode, root) {
     const url = normalizePath(article.url);
 
     if (mode === "article") {
-      return `../${url}`;
+      return `${root}${url}`;
     }
 
     return `./${url}`;
@@ -58,7 +58,8 @@
     }
 
     const mode = nav.dataset.navMode || "home";
-    const homeHref = mode === "article" ? "../index.html" : "./index.html";
+    const root = nav.dataset.siteRoot || (mode === "article" ? "../" : "./");
+    const homeHref = mode === "article" ? `${root}index.html` : "./index.html";
     const links = [
       mode === "home"
         ? '<a class="nav-link" aria-current="page">Home</a>'
@@ -71,7 +72,7 @@
 
       links.push(current
         ? `<a class="nav-link" aria-current="page">${title}</a>`
-        : `<a class="nav-link" href="${escapeHtml(buildHref(article, mode))}">${title}</a>`
+        : `<a class="nav-link" href="${escapeHtml(buildHref(article, mode, root))}">${title}</a>`
       );
     });
 
