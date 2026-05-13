@@ -8,6 +8,7 @@
   --card: #ffffff;
   --line: rgba(0, 0, 0, 0.06);
   --accent: #1d4ed8;
+  --article-content-width: 1010px;
 }
 
 * {
@@ -202,7 +203,7 @@ a {
 
 .article-stage > * {
   width: 100%;
-  max-width: 1010px;
+  max-width: var(--article-content-width);
 }
 
 .article-title {
@@ -210,7 +211,6 @@ a {
   font-weight: 700;
   line-height: 1.05;
   letter-spacing: -0.03em;
-  text-wrap: balance;
   margin: 0;
 }
 
@@ -227,6 +227,8 @@ a {
 }
 
 .article-body {
+  width: 100%;
+  max-width: var(--article-content-width);
   font-size: 1.08rem;
   line-height: 1.82;
 }
