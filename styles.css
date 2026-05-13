@@ -71,7 +71,7 @@ a {
 .shell {
   width: min(1120px, calc(100% - 24px));
   margin: 0 auto;
-  padding: 24px 0 48px;
+  padding: 24px 0 32px;
   position: relative;
   z-index: 1;
 }
@@ -320,7 +320,7 @@ a {
 .article-body code {
   font-family: "JetBrains Mono", "Fira Code", "Consolas", ui-monospace, monospace;
   font-size: 0.92em;
-  background: rgba(0, 0, 0, 0.06);
+  background: #efece3;
   padding: 2px 7px;
   border-radius: 6px;
   color: var(--text);
@@ -331,7 +331,7 @@ a {
 .article-body details.code-block {
   margin: 0 0 1em;
   border-radius: 12px;
-  background: #faf8f1;
+  background: #efece3;
   overflow: hidden;
 }
 
@@ -342,7 +342,7 @@ a {
   padding: 10px 16px;
   font-size: 0.95rem;
   color: var(--muted);
-  background: #faf8f1;
+  background: #efece3;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -399,11 +399,11 @@ a {
 }
 
 .article-body details.code-block {
-  background: #faf8f1 !important;
+  background: #efece3 !important;
 }
 
 .article-body details.code-block > summary {
-  background: #faf8f1 !important;
+  background: #efece3 !important;
 }
 
 .article-body img,
@@ -455,17 +455,17 @@ a {
   height: auto;
   max-height: 600px;
   object-fit: contain;
-  background: #fff;
+  background: var(--bg);
   display: block;
-  border-radius: 14px;
+  border-radius: 18px;
 }
 
 .article-body figure.carousel .carousel-slide {
   display: flex;
   flex-direction: column;
-  background: #fff;
+  background: transparent;
   border: 0;
-  border-radius: 14px;
+  border-radius: 18px;
   overflow: hidden;
   box-shadow: none;
   outline: 0;
@@ -476,22 +476,23 @@ a {
   height: auto;
   max-height: 560px;
   object-fit: contain;
-  background: #fff;
+  background: var(--bg);
   display: block;
-  border-radius: 14px;
+  border-radius: 18px;
 }
 
 .article-body figure.carousel .carousel-caption {
   margin: 0;
-  padding: 10px 18px 12px;
-  background: #fff;
+  padding: 12px 18px 6px;
+  background: transparent;
   border: 0;
   border-radius: 0;
   box-shadow: none;
   outline: 0;
   color: var(--muted);
-  font-size: 0.95rem;
-  line-height: 1.45;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  letter-spacing: 0.005em;
   text-align: center;
 }
 
@@ -1086,13 +1087,33 @@ a {
     padding-top: 12px;
   }
 
+  body::before {
+    background-size: 180px 96px;
+  }
+
   .placeholder {
     border-radius: 16px;
+    padding: 22px;
   }
 
   .placeholder:not(.article-stage) h1 {
     font-size: clamp(2rem, 10vw, 3rem);
     line-height: 1.08;
+  }
+
+  .article-title {
+    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+  }
+
+  .article-excerpt {
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .article-meta {
+    gap: 10px;
   }
 
   .article-body {
@@ -1117,25 +1138,85 @@ a {
     font-size: 0.85em;
   }
 
+  .article-body details.code-block > pre {
+    padding: 12px 14px 14px;
+    font-size: 0.85rem;
+  }
+
+  .article-body figure.carousel .carousel-track > img,
+  .article-body figure.carousel .carousel-slide > img {
+    max-height: 70vh;
+    border-radius: 14px;
+  }
+
+  .article-body figure.carousel .carousel-slide {
+    border-radius: 14px;
+  }
+
   .nav {
     width: 100%;
-    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
   }
 
   .nav-link {
-    flex: 1 1 0;
-    padding: 0 12px;
+    flex: 0 0 auto;
+    padding: 0 16px;
+    white-space: nowrap;
   }
 
   .hero {
-    border-radius: 18px;
+    padding: clamp(28px, 7vw, 44px);
+    border-radius: 20px;
+  }
+
+  .hero-eyebrow {
+    margin-bottom: 16px;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
   }
 
   .hero-title {
+    font-size: clamp(2.1rem, 9vw, 3rem);
     line-height: 1.06;
+  }
+
+  .hero-desc {
+    font-size: 1rem;
   }
 
   .card {
     padding: 20px;
+  }
+}
+
+@media (hover: none) {
+  .article-body figure.carousel .carousel-btn {
+    display: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .shell {
+    width: min(100% - 12px, 1120px);
+  }
+
+  .placeholder {
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .article-title {
+    font-size: clamp(1.6rem, 7.5vw, 2rem);
+  }
+
+  .article-body {
+    font-size: 0.92rem;
   }
 }

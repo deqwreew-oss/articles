@@ -94,7 +94,6 @@
     list.innerHTML = articles.map((article) => `
       <a href="${escapeHtml(buildHref(article, "home"))}" class="card">
         <div class="card-meta">
-          <span class="card-tag">${escapeHtml(article.category)}</span>
           <span class="card-meta-info">
             <span class="card-date">${escapeHtml(article.date)}</span>
             <span class="card-dot" aria-hidden="true">·</span>
