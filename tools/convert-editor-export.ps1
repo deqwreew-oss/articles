@@ -133,6 +133,13 @@ $html = [regex]::Replace($html, '(?:<br\s*/?>\s*)+(</p>)', '$1')
 $html = [regex]::Replace($html, 'src="\.\./articles-data\.js"', 'src="../../articles-data.js"')
 $html = [regex]::Replace($html, 'src="\.\./site\.js"', 'src="../../site.js"')
 
+# 7.1. Keep article body width controlled by styles.css, not editor inline styles.
+$html = [regex]::Replace(
+  $html,
+  '<div class="article-body"\s+style="max-width:[^"]*?margin-inline:auto;">',
+  '<div class="article-body">'
+)
+
 # 8. Inject meta tags after </title>
 function Encode-Attr {
   param([string]$value)
@@ -329,7 +336,8 @@ $runtimeScript = @'
   })();</script>
 '@
 
-# Remove old generic script tags that came from the editor (if duplicate)
+# Remove old generic/runtime script tags that came from the editor (if duplicate)
+$html = [regex]::Replace($html, '\s*<script>\s*\(\(\) => \{\s*const PREV =[\s\S]*?\}\)\(\);</script>', '')
 $html = [regex]::Replace($html, '\s*<script src="\.\./\.\./articles-data\.js"></script>', '')
 $html = [regex]::Replace($html, '\s*<script src="\.\./\.\./site\.js"></script>', '')
 

@@ -202,7 +202,7 @@ a {
 
 .article-stage > * {
   width: 100%;
-  max-width: 960px;
+  max-width: 1010px;
 }
 
 .article-title {
@@ -479,6 +479,8 @@ a {
   background: var(--bg);
   display: block;
   border-radius: 18px;
+  transform: scale(1.025);
+  transform-origin: center;
 }
 
 .article-body figure.carousel .carousel-caption {
