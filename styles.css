@@ -1102,13 +1102,13 @@ a {
   }
 
   .article-title {
-    font-size: clamp(1.8rem, 7vw, 2.4rem);
+    font-size: clamp(2rem, 7.5vw, 2.6rem);
     letter-spacing: -0.025em;
     line-height: 1.08;
   }
 
   .article-excerpt {
-    font-size: 1rem;
+    font-size: 1.05rem;
     line-height: 1.55;
   }
 
@@ -1117,30 +1117,30 @@ a {
   }
 
   .article-body {
-    font-size: 0.94rem;
-    line-height: 1.72;
+    font-size: 1.02rem;
+    line-height: 1.7;
   }
 
   .article-body h2 {
-    font-size: 1.3rem;
+    font-size: 1.5rem;
   }
 
   .article-body h3 {
-    font-size: 1.12rem;
+    font-size: 1.25rem;
   }
 
   .article-body blockquote {
     padding-left: 14px;
-    font-size: 0.92em;
+    font-size: 0.98em;
   }
 
   .article-body code {
-    font-size: 0.85em;
+    font-size: 0.88em;
   }
 
   .article-body details.code-block > pre {
     padding: 12px 14px 14px;
-    font-size: 0.85rem;
+    font-size: 0.9rem;
   }
 
   .article-body figure.carousel .carousel-track > img,
@@ -1178,21 +1178,58 @@ a {
 
   .hero-eyebrow {
     margin-bottom: 16px;
-    font-size: 0.72rem;
+    font-size: 0.78rem;
     letter-spacing: 0.18em;
   }
 
   .hero-title {
-    font-size: clamp(2.1rem, 9vw, 3rem);
-    line-height: 1.06;
+    font-size: clamp(2.4rem, 10vw, 3.2rem);
+    line-height: 1.04;
   }
 
   .hero-desc {
-    font-size: 1rem;
+    font-size: 1.05rem;
+    line-height: 1.55;
+  }
+
+  .section-title {
+    font-size: 1.5rem;
   }
 
   .card {
-    padding: 20px;
+    padding: 22px;
+  }
+
+  .card-title {
+    font-size: 1.3rem;
+    line-height: 1.2;
+  }
+
+  .card-desc {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .card-meta-info {
+    font-size: 0.9rem;
+  }
+
+  .card-cta {
+    font-size: 0.98rem;
+  }
+
+  .link-tile {
+    max-width: 100%;
+    padding: 22px;
+    gap: 14px;
+  }
+
+  .link-tile-name {
+    font-size: 1.2rem;
+  }
+
+  .link-tile-handle {
+    font-size: 0.95rem;
   }
 }
 
@@ -1213,10 +1250,22 @@ a {
   }
 
   .article-title {
-    font-size: clamp(1.6rem, 7.5vw, 2rem);
+    font-size: clamp(1.8rem, 7.5vw, 2.2rem);
   }
 
   .article-body {
-    font-size: 0.92rem;
+    font-size: 1rem;
+  }
+
+  .article-body h2 {
+    font-size: 1.4rem;
+  }
+
+  .article-body h3 {
+    font-size: 1.18rem;
+  }
+
+  .card-title {
+    font-size: 1.2rem;
   }
 }
