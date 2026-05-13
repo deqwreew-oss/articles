@@ -1092,8 +1092,10 @@ a {
   }
 
   .placeholder {
-    border-radius: 16px;
+    border-radius: 0;
     padding: 22px;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 
   .placeholder:not(.article-stage) h1 {
@@ -1173,7 +1175,9 @@ a {
 
   .hero {
     padding: clamp(28px, 7vw, 44px);
-    border-radius: 20px;
+    border-radius: 0;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
   }
 
   .hero-eyebrow {
@@ -1246,7 +1250,7 @@ a {
 
   .placeholder {
     padding: 18px;
-    border-radius: 14px;
+    border-radius: 0;
   }
 
   .article-title {
