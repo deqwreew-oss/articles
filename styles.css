@@ -607,7 +607,7 @@ a {
   height: 620px;
   top: -220px;
   right: -160px;
-  background: radial-gradient(circle, rgba(214, 137, 87, 0.55) 0%, rgba(214, 137, 87, 0) 70%);
+  background: radial-gradient(circle, rgba(28, 26, 23, 0.18) 0%, rgba(28, 26, 23, 0) 70%);
 }
 
 .hero::after {
@@ -615,7 +615,7 @@ a {
   height: 480px;
   bottom: -220px;
   left: -140px;
-  background: radial-gradient(circle, rgba(94, 142, 175, 0.45) 0%, rgba(94, 142, 175, 0) 70%);
+  background: radial-gradient(circle, rgba(28, 26, 23, 0.10) 0%, rgba(28, 26, 23, 0) 70%);
 }
 
 /* ---------- Page entrance ---------- */
@@ -770,7 +770,7 @@ a {
   height: 340px;
   top: -140px;
   right: -120px;
-  background: radial-gradient(circle, rgba(214, 137, 87, 0.38) 0%, rgba(214, 137, 87, 0) 70%);
+  background: radial-gradient(circle, rgba(28, 26, 23, 0.12) 0%, rgba(28, 26, 23, 0) 70%);
 }
 
 .card::after {
@@ -778,7 +778,7 @@ a {
   height: 260px;
   bottom: -120px;
   left: -90px;
-  background: radial-gradient(circle, rgba(94, 142, 175, 0.32) 0%, rgba(94, 142, 175, 0) 70%);
+  background: radial-gradient(circle, rgba(28, 26, 23, 0.06) 0%, rgba(28, 26, 23, 0) 70%);
 }
 
 .card:hover {
