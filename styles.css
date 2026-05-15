@@ -424,6 +424,8 @@ a {
   overflow: visible;
   box-shadow: none;
   outline: 0;
+  content-visibility: auto;
+  contain-intrinsic-size: auto 600px;
 }
 
 .article-body figure.carousel .carousel-track {

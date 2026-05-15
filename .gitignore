@@ -1,0 +1,9 @@
+# Local backups created by tools/scripts
+_backup-*/
+*.backup-*
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
