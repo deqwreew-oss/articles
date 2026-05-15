@@ -7,4 +7,4 @@ window.ARTICLES = [
     description: "Снял промежуточный слой Gemini 3 Pro Image и посмотрел, что делает базовая модель без обёртки.",
     url: "posts/nano-banana-pro-bypass/"
   }
-];
+]
