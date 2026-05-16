@@ -112,6 +112,128 @@
     `).join("");
   }
 
+  const SETTINGS_KEY = "site:settings";
+
+  function loadSettings() {
+    try {
+      const raw = localStorage.getItem(SETTINGS_KEY);
+      return raw ? JSON.parse(raw) : {};
+    } catch (err) {
+      return {};
+    }
+  }
+
+  function saveSettings(state) {
+    try {
+      localStorage.setItem(SETTINGS_KEY, JSON.stringify(state));
+    } catch (err) {
+      // ignore quota / privacy mode errors
+    }
+  }
+
+  function applyTheme(dark) {
+    document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+  }
+
+  function applyGrain(off) {
+    document.body.classList.toggle("no-grain", !!off);
+  }
+
+  function prefersDark() {
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  function renderSettings() {
+    const header = document.querySelector(".header");
+
+    if (!header || header.querySelector(".settings")) {
+      return;
+    }
+
+    const state = loadSettings();
+    const dark = state.theme ? state.theme === "dark" : prefersDark();
+    const grainOn = state.grain === "on";
+
+    applyTheme(dark);
+    applyGrain(!grainOn);
+
+    const checkSvg = '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3.5,8.5 6.5,11.5 12.5,4.5"/></svg>';
+
+    const wrap = document.createElement("div");
+    wrap.className = "settings";
+    wrap.innerHTML = `
+      <button class="settings-btn" type="button" aria-label="Настройки" aria-expanded="false" aria-haspopup="menu">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+          <circle cx="4" cy="10" r="1.6"/>
+          <circle cx="10" cy="10" r="1.6"/>
+          <circle cx="16" cy="10" r="1.6"/>
+        </svg>
+      </button>
+      <div class="settings-menu" role="menu" data-open="false">
+        <button class="settings-item" type="button" role="menuitemcheckbox" data-setting="theme" aria-checked="${dark}">
+          <span class="settings-check">${checkSvg}</span>
+          <span>Тёмная тема</span>
+        </button>
+        <button class="settings-item" type="button" role="menuitemcheckbox" data-setting="grain" aria-checked="${grainOn}">
+          <span class="settings-check">${checkSvg}</span>
+          <span>Зернистость</span>
+        </button>
+      </div>
+    `;
+
+    header.appendChild(wrap);
+
+    const btn = wrap.querySelector(".settings-btn");
+    const menu = wrap.querySelector(".settings-menu");
+    const items = wrap.querySelectorAll(".settings-item");
+
+    function setOpen(open) {
+      btn.setAttribute("aria-expanded", String(open));
+      menu.setAttribute("data-open", String(open));
+    }
+
+    btn.addEventListener("click", (event) => {
+      event.stopPropagation();
+      const open = menu.getAttribute("data-open") === "true";
+      setOpen(!open);
+    });
+
+    document.addEventListener("click", (event) => {
+      if (!wrap.contains(event.target)) {
+        setOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    });
+
+    items.forEach((item) => {
+      item.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const key = item.dataset.setting;
+        const current = loadSettings();
+
+        if (key === "theme") {
+          const nextDark = item.getAttribute("aria-checked") !== "true";
+          current.theme = nextDark ? "dark" : "light";
+          applyTheme(nextDark);
+          item.setAttribute("aria-checked", String(nextDark));
+        } else if (key === "grain") {
+          const nextOn = item.getAttribute("aria-checked") !== "true";
+          current.grain = nextOn ? "on" : "off";
+          applyGrain(!nextOn);
+          item.setAttribute("aria-checked", String(nextOn));
+        }
+
+        saveSettings(current);
+      });
+    });
+  }
+
   renderNav();
   renderCards();
+  renderSettings();
 })();
