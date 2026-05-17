@@ -66,7 +66,7 @@
         : `<a class="nav-link" href="${homeHref}">Home</a>`
     ];
 
-    articles.forEach((article) => {
+    articles.filter((a) => !a.hidden).forEach((article) => {
       const current = mode === "article" && isCurrentArticle(article);
       const title = escapeHtml(article.navTitle || article.title);
 
@@ -91,7 +91,7 @@
       return;
     }
 
-    list.innerHTML = articles.map((article) => `
+    list.innerHTML = articles.filter((a) => !a.hidden).map((article) => `
       <a href="${escapeHtml(buildHref(article, "home"))}" class="card">
         <div class="card-meta">
           <span class="card-meta-info">

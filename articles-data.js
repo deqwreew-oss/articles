@@ -5,6 +5,7 @@ window.ARTICLES = [
     date: "21 апр 2026",
     readTime: "8 мин",
     description: "Снял промежуточный слой Gemini 3 Pro Image и посмотрел, что делает базовая модель без обёртки.",
-    url: "posts/nano-banana-pro-bypass/"
+    url: "posts/nano-banana-pro-bypass/",
+    hidden: true
   }
 ]
