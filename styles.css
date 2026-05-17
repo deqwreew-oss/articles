@@ -26,7 +26,7 @@
 }
 
 :root[data-theme="dark"] body::before {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 320 160'%3E%3Cg transform='rotate(-22 160 80)'%3E%3Ctext x='14' y='96' fill='rgba(243,239,231,0.07)' font-family='Helvetica Neue, Helvetica, Arial, sans-serif' font-weight='500' font-size='14' letter-spacing='8'%3ESOME %E2%80%94 ONE%3C/text%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 320 160'%3E%3Cg transform='rotate(-22 160 80)'%3E%3Ctext x='14' y='96' fill='rgba(243,239,231,0.04)' font-family='Helvetica Neue, Helvetica, Arial, sans-serif' font-weight='500' font-size='14' letter-spacing='8'%3ESOME %E2%80%94 ONE%3C/text%3E%3C/g%3E%3C/svg%3E");
 }
 
 :root[data-theme="dark"] .hero::before {
@@ -78,7 +78,7 @@ body::before {
   inset: -20vh -20vw;
   pointer-events: none;
   z-index: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 320 160'%3E%3Cg transform='rotate(-22 160 80)'%3E%3Ctext x='14' y='96' fill='rgba(28,26,23,0.06)' font-family='Helvetica Neue, Helvetica, Arial, sans-serif' font-weight='500' font-size='14' letter-spacing='8'%3ESOME %E2%80%94 ONE%3C/text%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='160' viewBox='0 0 320 160'%3E%3Cg transform='rotate(-22 160 80)'%3E%3Ctext x='14' y='96' fill='rgba(28,26,23,0.035)' font-family='Helvetica Neue, Helvetica, Arial, sans-serif' font-weight='500' font-size='14' letter-spacing='8'%3ESOME %E2%80%94 ONE%3C/text%3E%3C/g%3E%3C/svg%3E");
   background-repeat: repeat;
   background-size: 280px 150px;
   background-position: -32px -22px;
@@ -453,6 +453,22 @@ a {
 
 .article-body details.code-block > summary {
   background: #efece3 !important;
+}
+
+:root[data-theme="dark"] .article-body code {
+  background: #2a2723;
+}
+
+:root[data-theme="dark"] .article-body details.code-block {
+  background: #1f1d1a !important;
+}
+
+:root[data-theme="dark"] .article-body details.code-block > summary {
+  background: #1f1d1a !important;
+}
+
+:root[data-theme="dark"] .article-body details.code-block > summary::before {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23f3efe7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='9 18 15 12 9 6'/></svg>");
 }
 
 .article-body img,
@@ -1448,4 +1464,51 @@ a {
 
 .settings-item[aria-checked="false"] {
   color: var(--muted);
+}
+
+/* ---------- Code block copy button ---------- */
+
+.code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: 0;
+  border-radius: 8px;
+  background: var(--surface-hover);
+  color: var(--muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 160ms ease, background 160ms ease, color 160ms ease;
+  z-index: 2;
+}
+
+.code-copy-btn svg {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.article-body details.code-block {
+  position: relative;
+}
+
+.article-body details.code-block[open]:hover .code-copy-btn,
+.code-copy-btn:focus-visible {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  background: var(--line);
+  color: var(--text);
+}
+
+.code-copy-btn.copied {
+  opacity: 1;
+  color: #16a34a;
 }

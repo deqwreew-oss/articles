@@ -233,7 +233,53 @@
     });
   }
 
+  function renderCopyButtons() {
+    const blocks = document.querySelectorAll(".article-body details.code-block");
+
+    if (!blocks.length) {
+      return;
+    }
+
+    const copySvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>';
+    const checkSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>';
+
+    blocks.forEach((block) => {
+      if (block.querySelector(".code-copy-btn")) {
+        return;
+      }
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "code-copy-btn";
+      btn.setAttribute("aria-label", "Копировать");
+      btn.innerHTML = copySvg;
+
+      btn.addEventListener("click", (event) => {
+        event.stopPropagation();
+        const pre = block.querySelector("pre");
+
+        if (!pre) {
+          return;
+        }
+
+        const text = pre.textContent || "";
+        navigator.clipboard.writeText(text).then(() => {
+          btn.innerHTML = checkSvg;
+          btn.classList.add("copied");
+
+          setTimeout(() => {
+            btn.innerHTML = copySvg;
+            btn.classList.remove("copied");
+          }, 1500);
+        });
+      });
+
+      block.appendChild(btn);
+    });
+  }
+
   renderNav();
   renderCards();
+  renderCopyButtons();
   renderSettings();
 })();
